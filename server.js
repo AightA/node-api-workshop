@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 app.get('/albums', (req, res) => {
 	let filteredList = albumsData.filter((album) => album.primaryGenreName === req.query.genre);
 
-	if (filteredList.find(album.primaryGenreName === req.query.genre)) {
+	if (filteredList.find((album) => album.primaryGenreName === req.query.genre)) {
 		res.send(filteredList);
 	} else {
 		res.send(albumsData);
@@ -50,20 +50,20 @@ app.get('/songs', (req, res) => {
 	res.send(songData);
 });
 
-app.delete('/albums/:id', (req, res) => {
-	const newAlbumsData = albumsData.find((album) => album.albumId !== req.params.id);
-	albumsData.splice(albumsData.indexOf(newAlbumsData), 1);
-	res.send('Deleted album' + req.params.id);
-});
-app.put('/albums/:id', (req, res) => {
-	console.log(req.params.id);
-	console.log(req.body);
-	const index = albumsData.findindex((album) => album.albumId === req.params.id);
-	albumsData[index] = { ...albumsData[index], ...req.body };
-	res.send(albumsData[index]);
-	//const albumToEdit = albumsData.find(album => album.albumId = req.params.id);
-	//albumToEdit ={...albumToEdit,...req.body};
-});
+// app.delete('/albums/:id', (req, res) => {
+// 	const newAlbumsData = albumsData.find((album) => album.albumId !== req.params.id);
+// 	albumsData.splice(albumsData.indexOf(newAlbumsData), 1);
+// 	res.send('Deleted album' + req.params.id);
+// });
+// app.put('/albums/:id', (req, res) => {
+// 	console.log(req.params.id);
+// 	console.log(req.body);
+// 	const index = albumsData.findindex((album) => album.albumId === req.params.id);
+// 	albumsData[index] = { ...albumsData[index], ...req.body };
+// 	res.send(albumsData[index]);
+// 	//const albumToEdit = albumsData.find(album => album.albumId = req.params.id);
+// 	//albumToEdit ={...albumToEdit,...req.body};
+// });
 
 app.listen(process.env.PORT || 3000, () => {
 	console.log('May be the app is running ....-_-"');
